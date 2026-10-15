@@ -34,11 +34,9 @@
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
-            /* MANTENEMOS LA FOTO DE FONDO */
             background-image: url('img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG'); 
         }
 
-        /* Degradado oscuro en la parte inferior para que el texto resalte */
         .overlay {
             background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 100%);
             padding: 40px 24px 30px 24px;
@@ -50,14 +48,13 @@
             border-top-right-radius: 20px;
         }
 
-        /* --- NUEVO CSS PARA EL AVATAR CIRCULAR --- */
         .profile-avatar-container {
-            width: 40px; /* Tamaño del círculo */
-            height: 40px; /* Tamaño del círculo */
-            border-radius: 50%; /* Lo hace circular */
-            overflow: hidden; /* Recorta la imagen al círculo */
-            margin-bottom: 10px; /* Espacio antes del nombre */
-            border: 2px solid #fff; /* Opcional: un borde blanco fino */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border: 2px solid #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             display: flex;
             justify-content: center;
@@ -67,13 +64,12 @@
         .profile-avatar-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Asegura que la imagen llene el círculo sin deformarse */
+            object-fit: cover;
             object-position: center;
         }
-        /* ------------------------------------------ */
 
         .profile-name {
-            font-size: 1.8rem; /* Reducido un poco para equilibrar con el avatar de 40px */
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 24px;
             text-align: center;
@@ -100,7 +96,6 @@
             transform: scale(1.1);
         }
 
-        /* Botón estilo Instagram con degradado rosa/naranja */
         .instagram-btn {
             width: 46px;
             height: 46px;
@@ -109,7 +104,6 @@
             font-size: 1.5rem;
         }
 
-        /* Botón TikTok minimalista */
         .tiktok-btn {
             font-size: 1.5rem;
             width: 46px;
@@ -118,10 +112,9 @@
             background-color: transparent;
         }
 
-        /* Botón principal Hablemos! (OnlyFans) */
         .cta-btn {
             width: 100%;
-            background-color: #d32f2f; /* Rojo/Granate igual al del ejemplo */
+            background-color: #d32f2f;
             color: #ffffff;
             text-decoration: none;
             text-align: center;
@@ -132,6 +125,9 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
             transition: background-color 0.2s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+            display: block;
         }
 
         .cta-btn:hover {
@@ -139,7 +135,6 @@
             transform: translateY(-2px);
         }
 
-        /* Badge "Near You" opcional */
         .location-badge {
             display: inline-flex;
             align-items: center;
@@ -151,6 +146,119 @@
             font-size: 0.85rem;
             font-weight: 600;
         }
+
+        /* ESTILOS DEL OVERLAY Y MODAL DE EDAD */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(240, 242, 245, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background-color: #ffffff;
+            color: #1c2536;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 24px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .badge-18 {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #1e2838;
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+
+        .btn-stack {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-row {
+            width: 100%;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-modal-dark {
+            width: 100%;
+            background-color: #1e2838;
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-modal-dark:hover {
+            background-color: #111827;
+        }
+
+        .btn-modal-light {
+            width: 100%;
+            background-color: #ffffff;
+            color: #1e2838;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-modal-light:hover {
+            background-color: #f9fafb;
+        }
     </style>
 </head>
 <body>
@@ -158,15 +266,12 @@
     <div class="container">
         <div class="overlay">
             
-            <!-- --- NUEVO BLOQUE DEL AVATAR --- -->
             <div class="profile-avatar-container">
                 <img src="img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG" alt="Maria d los angeles Avatar" class="profile-avatar-img">
             </div>
-            <!-- --------------------------------- -->
 
             <h1 class="profile-name">Maria d los angeles</h1>
 
-            <!-- Botones de Redes Sociales -->
             <div class="social-links">
                 <a href="https://www.instagram.com/mariadlosangelescs?stkn=NmMxYTQ0Mm1vYTJx" target="_blank" class="social-btn instagram-btn" title="Instagram">
                     <i class="fa-brands fa-instagram"></i>
@@ -176,13 +281,69 @@
                 </a>
             </div>
 
-            <!-- Botón Principal (OnlyFans) -->
-            <a href="https://www.onlyfans.com/mariadlosangeles" target="_blank" class="cta-btn">
+            <!-- Botón Principal dispara el flujo de verificación de edad -->
+            <button class="cta-btn" onclick="openAgeModal()">
                 Hablemos!
-            </a>
+            </button>
 
+            <div class="location-badge">
+                <i class="fa-solid fa-location-dot"></i> Near You
+            </div>
         </div>
     </div>
+
+    <!-- CONTENEDOR MODAL -->
+    <div id="modalBackdrop" class="modal-backdrop">
+        
+        <!-- PANTALLA 1: Before you continue -->
+        <div id="screen1" class="modal-card">
+            <div class="badge-18">18+</div>
+            <h2 class="modal-title">Before you continue</h2>
+            <p class="modal-text">This content is intended for adults. You must be 18 or older to view it.</p>
+            <div class="btn-row">
+                <button class="btn-modal-light" onclick="goToScreen(2)">I'm under 18</button>
+                <button class="btn-modal-dark" onclick="redirectToOF()">I'm 18 or older</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA 2: You must be 18+ to view this -->
+        <div id="screen2" class="modal-card" style="display: none;">
+            <div class="badge-18">18+</div>
+            <h2 class="modal-title">You must be 18+ to view this</h2>
+            <p class="modal-text">This content is restricted to adults. If you're 18 or older, you can continue.</p>
+            <div class="btn-stack">
+                <button class="btn-modal-dark" onclick="redirectToOF()">I'm 18 or older — continue</button>
+                <button class="btn-modal-light" onclick="goToScreen(3)">Leave</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA 3: Access restricted -->
+        <div id="screen3" class="modal-card" style="display: none;">
+            <div class="badge-18">18+</div>
+            <h2 class="modal-title">Access restricted</h2>
+            <p class="modal-text" style="margin-bottom: 0;">You must be 18 or older to view this content.</p>
+        </div>
+
+    </div>
+
+    <script>
+        const TARGET_URL = "https://www.onlyfans.com/mariadlosangeles";
+
+        function openAgeModal() {
+            document.getElementById('modalBackdrop').style.display = 'flex';
+            goToScreen(1);
+        }
+
+        function goToScreen(screenNumber) {
+            document.getElementById('screen1').style.display = screenNumber === 1 ? 'flex' : 'none';
+            document.getElementById('screen2').style.display = screenNumber === 2 ? 'flex' : 'none';
+            document.getElementById('screen3').style.display = screenNumber === 3 ? 'flex' : 'none';
+        }
+
+        function redirectToOF() {
+            window.open(TARGET_URL, '_blank');
+        }
+    </script>
 
 </body>
 </html>
