@@ -29,33 +29,20 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            position: relative;
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-image: url('img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG'); 
-        }
-
-        .overlay {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 100%);
-            padding: 40px 24px 30px 24px;
-            display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            width: 100%;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
+            padding: 24px;
+            background-color: #000;
         }
 
         .profile-avatar-container {
-            width: 40px;
-            height: 40px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             overflow: hidden;
-            margin-bottom: 10px;
-            border: 2px solid #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -71,279 +58,72 @@
         .profile-name {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 24px;
+            margin-bottom: 30px;
             text-align: center;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 25px;
-            align-items: center;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: #fff;
-            transition: transform 0.2s ease;
-        }
-
-        .social-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .instagram-btn {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-            font-size: 1.5rem;
-        }
-
-        .tiktok-btn {
-            font-size: 1.5rem;
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background-color: transparent;
-        }
-
-        .cta-btn {
+        .links-container {
             width: 100%;
-            background-color: #d32f2f;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-btn {
+            width: 100%;
+            background-color: #1a1a1a;
             color: #ffffff;
             text-decoration: none;
             text-align: center;
-            padding: 16px 0;
+            padding: 16px 20px;
             border-radius: 30px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             transition: background-color 0.2s, transform 0.2s;
-            cursor: pointer;
-            border: none;
-            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .cta-btn:hover {
-            background-color: #b71c1c;
+        .link-btn:hover {
+            background-color: #2a2a2a;
             transform: translateY(-2px);
         }
 
-        .location-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        /* Botón principal estilizado estilo fucsia/rosado */
+        .link-btn.primary {
             background-color: #e91e63;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* ESTILOS DEL OVERLAY Y MODAL DE EDAD */
-        .modal-backdrop {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(240, 242, 245, 0.85);
-            backdrop-filter: blur(4px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-card {
-            background-color: #ffffff;
-            color: #1c2536;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 24px;
-            padding: 40px 32px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            animation: fadeIn 0.25s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.96); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .badge-18 {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: #1e2838;
-            color: #ffffff;
-            font-size: 1.8rem;
-            font-weight: 800;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #111827;
-            margin-bottom: 12px;
-        }
-
-        .modal-text {
-            font-size: 0.95rem;
-            color: #4b5563;
-            line-height: 1.5;
-            margin-bottom: 28px;
-        }
-
-        .btn-stack {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .btn-row {
-            width: 100%;
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-modal-dark {
-            width: 100%;
-            background-color: #1e2838;
-            color: #ffffff;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
             border: none;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            display: inline-block;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
         }
 
-        .btn-modal-dark:hover {
-            background-color: #111827;
-        }
-
-        .btn-modal-light {
-            width: 100%;
-            background-color: #ffffff;
-            color: #1e2838;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: 1px solid #e5e7eb;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-modal-light:hover {
-            background-color: #f9fafb;
+        .link-btn.primary:hover {
+            background-color: #d81b60;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="overlay">
-            
-            <div class="profile-avatar-container">
-                <img src="img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG" alt="Maria d los angeles Avatar" class="profile-avatar-img">
-            </div>
-
-            <h1 class="profile-name">Maria d los angeles</h1>
-
-            <div class="social-links">
-                <a href="https://www.instagram.com/mariadlosangelescs?stkn=NmMxYTQ0Mm1vYTJx" target="_blank" class="social-btn instagram-btn" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.tiktok.com/@mariadlosangelescs?_r=1&_t=ZS-9ANAFhztmFw" target="_blank" class="social-btn tiktok-btn" title="TikTok">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-            </div>
-
-            <!-- Botón Principal dispara el flujo de verificación de edad -->
-            <button class="cta-btn" onclick="openAgeModal()">
-                Hablemos!
-            </button>
-
-            <div class="location-badge">
-                <i class="fa-solid fa-location-dot"></i> Near You
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTENEDOR MODAL -->
-    <div id="modalBackdrop" class="modal-backdrop">
         
-        <!-- PANTALLA 1: Before you continue -->
-        <div id="screen1" class="modal-card">
-            <div class="badge-18">18+</div>
-            <h2 class="modal-title">Before you continue</h2>
-            <p class="modal-text">This content is intended for adults. You must be 18 or older to view it.</p>
-            <div class="btn-row">
-                <button class="btn-modal-light" onclick="goToScreen(2)">I'm under 18</button>
-                <button class="btn-modal-dark" onclick="redirectToOF()">I'm 18 or older</button>
-            </div>
+        <!-- Foto de perfil circular de tamaño medio -->
+        <div class="profile-avatar-container">
+            <img src="img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG" alt="Maria d los angeles Avatar" class="profile-avatar-img">
         </div>
 
-        <!-- PANTALLA 2: You must be 18+ to view this -->
-        <div id="screen2" class="modal-card" style="display: none;">
-            <div class="badge-18">18+</div>
-            <h2 class="modal-title">You must be 18+ to view this</h2>
-            <p class="modal-text">This content is restricted to adults. If you're 18 or older, you can continue.</p>
-            <div class="btn-stack">
-                <button class="btn-modal-dark" onclick="redirectToOF()">I'm 18 or older — continue</button>
-                <button class="btn-modal-light" onclick="goToScreen(3)">Leave</button>
-            </div>
-        </div>
+        <h1 class="profile-name">Maria d los angeles</h1>
 
-        <!-- PANTALLA 3: Access restricted -->
-        <div id="screen3" class="modal-card" style="display: none;">
-            <div class="badge-18">18+</div>
-            <h2 class="modal-title">Access restricted</h2>
-            <p class="modal-text" style="margin-bottom: 0;">You must be 18 or older to view this content.</p>
+        <div class="links-container">
+            <!-- Botón único centrado para ir a la landing de redes sociales -->
+            <a href="exclusivo.html" class="link-btn primary">
+                Mis redes sociales ✨
+            </a>
         </div>
 
     </div>
-
-    <script>
-        const TARGET_URL = "https://tinyurl.com/Mariadlosangelescs1";
-
-        function openAgeModal() {
-            document.getElementById('modalBackdrop').style.display = 'flex';
-            goToScreen(1);
-        }
-
-        function goToScreen(screenNumber) {
-            document.getElementById('screen1').style.display = screenNumber === 1 ? 'flex' : 'none';
-            document.getElementById('screen2').style.display = screenNumber === 2 ? 'flex' : 'none';
-            document.getElementById('screen3').style.display = screenNumber === 3 ? 'flex' : 'none';
-        }
-
-        function redirectToOF() {
-            window.open(TARGET_URL, '_blank');
-        }
-    </script>
 
 </body>
 </html>
