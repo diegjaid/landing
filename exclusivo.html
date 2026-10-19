@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redes Sociales - María de los Ángeles</title>
+    <title>Redes Sociales - María D Los Ángeles</title>
     <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -38,8 +38,8 @@
         }
 
         .overlay {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.4) 100%);
-            padding: 40px 24px 35px 24px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.45) 100%);
+            padding: 35px 24px 30px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -53,7 +53,7 @@
             height: 45px;
             border-radius: 50%;
             overflow: hidden;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border: 2px solid #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             display: flex;
@@ -71,25 +71,60 @@
         .profile-name {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-align: center;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .profile-description {
             font-size: 0.9rem;
-            color: #ddd;
+            color: #ccc;
             text-align: center;
             max-width: 340px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             line-height: 1.4;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
+        .profile-description strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Botón principal de Twitter / X */
+        .twitter-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .social-btn.twitter-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.6rem;
+            background-color: #000;
+            border: 2px solid #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .social-btn.twitter-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 22px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Fila inferior con el resto de las redes sociales */
         .social-links {
             display: flex;
             gap: 14px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             align-items: center;
             flex-wrap: wrap;
             justify-content: center;
@@ -103,8 +138,8 @@
             text-decoration: none;
             color: #fff;
             transition: transform 0.2s ease;
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             font-size: 1.3rem;
         }
@@ -147,7 +182,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -170,17 +205,24 @@
             
             <!-- Mini foto de perfil -->
             <div class="profile-avatar-container">
-                <img src="img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG" alt="María de los Ángeles Avatar" class="profile-avatar-img">
+                <img src="img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG" alt="María D Los Ángeles Avatar" class="profile-avatar-img">
             </div>
 
-            <h1 class="profile-name">María de los Ángeles</h1>
+            <h1 class="profile-name">María D Los Ángeles</h1>
             
-            <!-- Texto informativo -->
+            <!-- Texto informativo con Twitter destacado -->
             <p class="profile-description">
-                Mi pagina web mas privada 😈 la encontraras en mi Facebook, tiktok, Threads y youtube
+                Si quieres que hablemos, mi pagina web mas privada 😈 la encontraras en mi <strong>Twitter</strong>.
             </p>
 
-            <!-- Redes Sociales Oficiales -->
+            <!-- Botón principal de Twitter / X (Centrado e independiente) -->
+            <div class="twitter-container">
+                <a href="https://x.com/MariaLangeles1" target="_blank" rel="noopener noreferrer" class="social-btn twitter-btn" aria-label="X / Twitter">
+                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <!-- Resto de Redes Sociales Centradas Abajo -->
             <div class="social-links">
                 <a href="https://www.instagram.com/mariadlosangelescs?stkn=NmMxYTQ0Mm1vYTJx" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn" aria-label="Instagram">
                     <i class="fa-brands fa-instagram" aria-hidden="true"></i>
