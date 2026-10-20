@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Métricas Avanzado - Privado</title>
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Librería de Gráficos Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 650px;
+            background-color: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-align: center;
+            color: #e91e63;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Selector de Filtro por Mes */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            background-color: #222;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .filter-container label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ccc;
+        }
+
+        .filter-container select {
+            background-color: #111;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Área de Gráficos */
+        .chart-container {
+            position: relative;
+            margin-bottom: 30px;
+            background-color: #1c1c1c;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #2d2d2d;
+        }
+
+        .metrics-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .metric-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #222;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .metric-card.inicio-card {
+            background-color: #2c1622;
+            border: 1px solid #e91e63;
+        }
+
+        .metric-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .metric-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .inicio-icon { background-color: #e91e63; color: #fff; }
+        .twitter-icon { background-color: #000; border: 1px solid #fff; }
+        .instagram-icon { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+        .tiktok-icon { background-color: #000; border: 1px solid #444; }
+        .facebook-icon { background-color: #1877F2; }
+        .threads-icon { background-color: #000; border: 1px solid #444; }
+        .youtube-icon { background-color: #FF0000; }
+
+        .metric-count {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            background-color: #111;
+            padding: 4px 12px;
+            border-radius: 16px;
+            border: 1px solid #333;
+        }
+
+        .btn-reset {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #282828;
+            color: #888;
+            border: 1px solid #3a3a3a;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-reset:hover {
+            background-color: #e53935;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h1 class="title"><i class="fa-solid fa-chart-pie"></i> Tablero de Métricas</h1>
+        <p class="subtitle">Análisis gráfico y estadísticas comparativas</p>
+
+        <!-- Filtro por Mes -->
+        <div class="filter-container">
+            <label for="monthSelect"><i class="fa-regular fa-calendar-days"></i> Filtrar por Mes:</label>
+            <select id="monthSelect" onchange="updateDashboard()">
+                <option value="all">Histórico Total</option>
+                <option value="current" selected>Mes Actual</option>
+            </select>
+        </div>
+
+        <!-- Gráfico Visual con Chart.js -->
+        <div class="chart-container">
+            <canvas id="metricsChart"></canvas>
+        </div>
+
+        <!-- Tarjetas Detalladas -->
+        <div class="metrics-grid">
+            <div class="metric-card inicio-card">
+                <div class="metric-info">
+                    <div class="metric-icon inicio-icon"><i class="fa-solid fa-door-open"></i></div>
+                    <span>Clics en "Mis redes" (Inicio)</span>
+                </div>
+                <div class="metric-count" id="count-inicio">0</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <div class="metric-icon twitter-icon"><i class="fa-brands fa-x-twitter"></i></div>
+                    <span>Twitter / X</span>
+                </div>
+                <div class="metric-count" id="count-twitter">0</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <div class="metric-icon instagram-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <span>Instagram</span>
+                </div>
+                <div class="metric-count" id="count-instagram">0</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <div class="metric-icon tiktok-icon"><i class="fa-brands fa-tiktok"></i></div>
+                    <span>TikTok</span>
+                </div>
+                <div class="metric-count" id="count-tiktok">0</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <div class="metric-icon facebook-icon"><i class="fa-brands fa-facebook-f"></i></div>
+                    <span>Facebook</span>
+                </div>
+                <div class="metric-count" id="count-facebook">0</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <div class="metric-icon threads-icon"><i class="fa-brands fa-threads"></i></div>
+                    <span>Threads</span>
+                </div>
+                <div class="metric-count" id="count-threads">0</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <div class="metric-icon youtube-icon"><i class="fa-brands fa-youtube"></i></div>
+                    <span>YouTube</span>
+                </div>
+                <div class="metric-count" id="count-youtube">0</div>
+            </div>
+        </div>
+
+        <button class="btn-reset" onclick="resetMetrics()">Reiniciar Contadores</button>
+    </div>
+
+    <script>
+        const networks = ['inicio', 'twitter', 'instagram', 'tiktok', 'facebook', 'threads', 'youtube'];
+        const labels = ['Inicio', 'Twitter', 'Instagram', 'TikTok', 'Facebook', 'Threads', 'YouTube'];
+        const colors = ['#e91e63', '#ffffff', '#d6249f', '#25f4ee', '#1877F2', '#aaaaaa', '#FF0000'];
+
+        let myChart = null;
+
+        // Cargar opciones dinámicas de meses
+        function populateMonthOptions() {
+            const select = document.getElementById('monthSelect');
+            const now = new Date();
+            for (let i = 0; i < 6; i++) {
+                let d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                let key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+                let monthName = d.toLocaleString('es-ES', { month: 'long', year: 'numeric' });
+                monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+                
+                let opt = document.createElement('option');
+                opt.value = key;
+                opt.innerText = monthName;
+                if (i === 0) opt.selected = true;
+                select.appendChild(opt);
+            }
+        }
+
+        async function getCount(net, filter) {
+            let key = filter === 'all' ? `clicks_${net}` : (filter === 'current' ? getMonthKey(new Date()) : `clicks_${net}_${filter}`);
+            let localVal = parseInt(localStorage.getItem(key) || '0');
+
+            try {
+                let apiSuffix = filter === 'all' ? `mariadlosangelescs_${net}` : `mariadlosangelescs_${net}_${key.replace('clicks_' + net + '_', '')}`;
+                let res = await fetch(`https://api.countapi.xyz/get/${apiSuffix}/clicks`);
+                let data = await res.json();
+                if (data && data.value) localVal = Math.max(localVal, data.value);
+            } catch(e) {}
+
+            return localVal;
+        }
+
+        function getMonthKey(dateObj) {
+            return `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}`;
+        }
+
+        async function updateDashboard() {
+            const filterValue = document.getElementById('monthSelect').value;
+            let currentFilter = filterValue === 'current' ? getMonthKey(new Date()) : filterValue;
+
+            let dataValues = [];
+
+            for (let net of networks) {
+                let count = await getCount(net, currentFilter);
+                dataValues.push(count);
+                document.getElementById('count-' + net).innerText = count;
+            }
+
+            renderChart(dataValues);
+        }
+
+        function renderChart(dataValues) {
+            const ctx = document.getElementById('metricsChart').getContext('2d');
+            
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Número de Clics',
+                        data: dataValues,
+                        backgroundColor: colors,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#888', precision: 0 },
+                            grid: { color: '#262626' }
+                        },
+                        x: {
+                            ticks: { color: '#ccc' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function resetMetrics() {
+            if (confirm("¿Estás seguro de reiniciar los contadores locales a 0?")) {
+                localStorage.clear();
+                updateDashboard();
+            }
+        }
+
+        populateMonthOptions();
+        updateDashboard();
+    </script>
+</body>
+</html>

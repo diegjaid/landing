@@ -91,7 +91,6 @@
             font-weight: 700;
         }
 
-        /* Botón principal de Twitter / X */
         .twitter-container {
             margin-bottom: 20px;
             display: flex;
@@ -120,7 +119,6 @@
             box-shadow: 0 0 22px rgba(255, 255, 255, 0.6);
         }
 
-        /* Fila inferior con el resto de las redes sociales */
         .social-links {
             display: flex;
             gap: 14px;
@@ -203,44 +201,42 @@
     <div class="container">
         <div class="overlay">
             
-            <!-- Mini foto de perfil -->
             <div class="profile-avatar-container">
                 <img src="img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG" alt="María D Los Ángeles Avatar" class="profile-avatar-img">
             </div>
 
             <h1 class="profile-name">María D Los Ángeles</h1>
             
-            <!-- Texto informativo con Twitter destacado -->
             <p class="profile-description">
                 Si quieres que hablemos, mi pagina web mas privada 😈 la encontraras en mi <strong>Twitter</strong>.
             </p>
 
-            <!-- Botón principal de Twitter / X (Centrado e independiente) -->
+            <!-- Botón principal Twitter / X -->
             <div class="twitter-container">
-                <a href="https://x.com/MariaLangeles1" target="_blank" rel="noopener noreferrer" class="social-btn twitter-btn" aria-label="X / Twitter">
+                <a href="https://x.com/MariaLangeles1" target="_blank" rel="noopener noreferrer" class="social-btn twitter-btn" onclick="trackClick('twitter')" aria-label="X / Twitter">
                     <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                 </a>
             </div>
 
-            <!-- Resto de Redes Sociales Centradas Abajo -->
+            <!-- Resto de Redes Sociales -->
             <div class="social-links">
-                <a href="https://www.instagram.com/mariadlosangelescs?stkn=NmMxYTQ0Mm1vYTJx" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn" aria-label="Instagram">
+                <a href="https://www.instagram.com/mariadlosangelescs?stkn=NmMxYTQ0Mm1vYTJx" target="_blank" rel="noopener noreferrer" class="social-btn instagram-btn" onclick="trackClick('instagram')" aria-label="Instagram">
                     <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                 </a>
 
-                <a href="https://www.tiktok.com/@mariadlosangelescs?_r=1&_t=ZS-9ANAFhztmFw" target="_blank" rel="noopener noreferrer" class="social-btn tiktok-btn" aria-label="TikTok">
+                <a href="https://www.tiktok.com/@mariadlosangelescs?_r=1&_t=ZS-9ANAFhztmFw" target="_blank" rel="noopener noreferrer" class="social-btn tiktok-btn" onclick="trackClick('tiktok')" aria-label="TikTok">
                     <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
                 </a>
 
-                <a href="https://www.facebook.com/share/18bZX7Uf9L/" target="_blank" rel="noopener noreferrer" class="social-btn facebook-btn" aria-label="Facebook">
+                <a href="https://www.facebook.com/share/18bZX7Uf9L/" target="_blank" rel="noopener noreferrer" class="social-btn facebook-btn" onclick="trackClick('facebook')" aria-label="Facebook">
                     <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
                 </a>
 
-                <a href="https://www.threads.net/@mariadlosangelescs" target="_blank" rel="noopener noreferrer" class="social-btn threads-btn" aria-label="Threads">
+                <a href="https://www.threads.net/@mariadlosangelescs" target="_blank" rel="noopener noreferrer" class="social-btn threads-btn" onclick="trackClick('threads')" aria-label="Threads">
                     <i class="fa-brands fa-threads" aria-hidden="true"></i>
                 </a>
 
-                <a href="https://www.youtube.com/@mariadlosangelescs" target="_blank" rel="noopener noreferrer" class="social-btn youtube-btn" aria-label="YouTube">
+                <a href="https://www.youtube.com/@mariadlosangelescs" target="_blank" rel="noopener noreferrer" class="social-btn youtube-btn" onclick="trackClick('youtube')" aria-label="YouTube">
                     <i class="fa-brands fa-youtube" aria-hidden="true"></i>
                 </a>
             </div>
@@ -249,7 +245,6 @@
                 <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Near You
             </div>
 
-            <!-- Enlace para volver al inicio -->
             <a href="index.html" class="back-link">
                 ← Volver al inicio
             </a>
@@ -257,5 +252,23 @@
         </div>
     </div>
 
+    <!-- Script de conteo con filtro por fecha/mes -->
+    <script>
+        function trackClick(network) {
+            const now = new Date();
+            const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+            
+            // Guardar total general
+            let countTotal = parseInt(localStorage.getItem('clicks_' + network) || '0');
+            localStorage.setItem('clicks_' + network, countTotal + 1);
+
+            // Guardar por mes
+            let countMonth = parseInt(localStorage.getItem(`clicks_${network}_${monthKey}`) || '0');
+            localStorage.setItem(`clicks_${network}_${monthKey}`, countMonth + 1);
+
+            fetch(`https://api.countapi.xyz/hit/mariadlosangelescs_${network}/clicks`).catch(err => {});
+            fetch(`https://api.countapi.xyz/hit/mariadlosangelescs_${network}_${monthKey}/clicks`).catch(err => {});
+        }
+    </script>
 </body>
 </html>

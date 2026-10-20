@@ -93,7 +93,6 @@
             transform: translateY(-2px);
         }
 
-        /* Botón principal estilizado estilo fucsia/rosado */
         .link-btn.primary {
             background-color: #e91e63;
             border: none;
@@ -109,7 +108,6 @@
 
     <div class="container">
         
-        <!-- Foto de perfil circular de tamaño medio -->
         <div class="profile-avatar-container">
             <img src="img/6F70C234-61FE-4771-A81F-11F5126764EC.JPG" alt="Maria d los angeles Avatar" class="profile-avatar-img">
         </div>
@@ -117,13 +115,30 @@
         <h1 class="profile-name">Maria d los angeles</h1>
 
         <div class="links-container">
-            <!-- Botón único centrado para ir a la landing de redes sociales -->
-            <a href="exclusivo.html" class="link-btn primary">
+            <a href="exclusivo.html" class="link-btn primary" onclick="trackClick('inicio')">
                 Mis redes sociales ✨
             </a>
         </div>
 
     </div>
 
+    <!-- Script de conteo con filtro por fecha/mes -->
+    <script>
+        function trackClick(network) {
+            const now = new Date();
+            const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+            
+            // Guardar total general
+            let countTotal = parseInt(localStorage.getItem('clicks_' + network) || '0');
+            localStorage.setItem('clicks_' + network, countTotal + 1);
+
+            // Guardar por mes
+            let countMonth = parseInt(localStorage.getItem(`clicks_${network}_${monthKey}`) || '0');
+            localStorage.setItem(`clicks_${network}_${monthKey}`, countMonth + 1);
+
+            fetch(`https://api.countapi.xyz/hit/mariadlosangelescs_${network}/clicks`).catch(err => {});
+            fetch(`https://api.countapi.xyz/hit/mariadlosangelescs_${network}_${monthKey}/clicks`).catch(err => {});
+        }
+    </script>
 </body>
 </html>
